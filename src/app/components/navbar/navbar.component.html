@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
+  <div class="container">
+    <a routerLink="/" class="navbar-brand">ShoppingPanel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/items" class="nav-link">Item List </a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/cart" class="nav-link">
+            Shopping cart
+            <i class="fa fa-shopping-cart">
+              <span *ngIf="length != 0">{{ length }}</span>
+            </i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

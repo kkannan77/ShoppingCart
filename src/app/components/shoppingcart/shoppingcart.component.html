@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-6">
+    <h2><i class="fa fa-users"></i>Cart</h2>
+  </div>
+  <div class="col-md-6" *ngIf="cartItems?.length > 0">
+    <h5 class="text-secondary">
+      Total Cost :
+
+      <span class="text-primary">{{ totalCart | currency }}</span>
+    </h5>
+    <h5 *ngIf="priceAfterDiscount > 0" class="text-secondary">
+      Discount : -
+      <span class="text-danger">{{ discountPrice | currency }}</span>
+    </h5>
+    <h5 *ngIf="priceAfterDiscount > 0" class="text-secondary">
+      Final Cost :
+      <span *ngIf="priceAfterDiscount > 0" class="text-success">{{
+        priceAfterDiscount | currency
+        }}</span>
+    </h5>
+  </div>
+  <h5 *ngIf="priceAfterDiscount > 0" class="text-secondary">
+    <small>Applied Coupon : {{ appliedCoupon }}</small>
+  </h5>
+</div>
+
+<table *ngIf="cartItems?.length > 0; else emptyCart" class="table table-stripped">
+  <thead class="table-inverse">
+    <tr>
+      <th>Item</th>
+      <th>Number of items</th>
+      <th>Total cost</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cartItem of cartItems">
+      <td>{{ cartItem.item.productName }}</td>
+
+      <td>{{ cartItem.itemCount }}</td>
+      <td>{{ cartItem.itemPrice | number: "1.2-2" }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="removeItemFromCart(cartItem.item)">
+          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-primary" (click)="addItemToCart(cartItem.item)">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyCart>
+  <hr />
+  <h5>There are no items in the cart</h5>
+</ng-template>

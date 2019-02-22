@@ -1,0 +1,20 @@
+<h2>Items</h2>
+<div class="card mb-3 text-center" style="width: 20rem;" *ngFor="let item of items">
+  <div class="card-header">
+    <h3 lass="card-title">{{ item.productName }}</h3>
+    <p class="card-subtitle mb-2 text-muted">Price: {{ item.price }}</p>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <button class="btn btn-danger" (click)="removeItemFromCart(item)">
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      </button>
+
+      {{ getItemCountinCart(item) }}
+
+      <button class="btn btn-primary" (click)="addItemToCart(item)">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
